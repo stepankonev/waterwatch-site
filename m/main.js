@@ -9,6 +9,28 @@ if (tg) {
   tg.expand();
 }
 
+// Google Analytics (loaded only if site.json carries an ID).
+// Same Measurement ID as the apex page — GA4 will report /m/ as its
+// own page_path so we can see mini-app traffic separately.
+function loadGA(id) {
+  if (!id || /[^A-Za-z0-9-]/.test(id)) return;
+  if (window.__ga_loaded) return;
+  window.__ga_loaded = true;
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", id, { anonymize_ip: true });
+}
+
+fetch("/data/site.json")
+  .then((r) => (r.ok ? r.json() : null))
+  .then((meta) => loadGA(meta?.ga_id || ""))
+  .catch(() => {});
+
 const AMSTERDAM = [4.895168, 52.370216]; // [lon, lat]
 
 const PROBLEM_LABEL = {
