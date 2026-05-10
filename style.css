@@ -436,12 +436,20 @@ h1, h2, h3, h4 {
   pointer-events: none;
   box-shadow: 0 6px 18px -10px rgba(10, 37, 64, 0.25);
 }
-@media (max-width: 600px) {
+@media (max-width: 760px) {
+  /* On mobile, the hero-overlay drops out of absolute positioning into
+     flex-column flow under the map. The notice has to come with it,
+     otherwise it'd be anchored to the bottom of map-hero — which is
+     well past the visible map. Put it in flow between the map and the
+     hero text. */
   .map-notice {
+    position: static;
+    transform: none;
+    margin: 0.6rem auto 0;
     font-size: 0.66rem;
     padding: 0.36rem 0.7rem;
-    bottom: 1rem;
     line-height: 1.4;
+    box-shadow: none;
   }
 }
 
