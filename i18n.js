@@ -24,6 +24,7 @@ const I18N = {
     "hero.qrCaption": "Scan with<br>your phone<br>to report",
 
     "map.legendTitle": "Criticality",
+    "map.notice": "Sample data for now — real reports will replace these as citizens submit.",
 
     "report.eyebrow": "📰 This week's report",
     "report.sub": "Reading the signal in the last seven days.",
@@ -89,6 +90,7 @@ const I18N = {
     "hero.qrCaption": "Scan met<br>je telefoon<br>om te melden",
 
     "map.legendTitle": "Ernst",
+    "map.notice": "Voorlopig voorbeelddata — echte meldingen vervangen deze zodra burgers melden.",
 
     "report.eyebrow": "📰 Verslag van deze week",
     "report.sub": "De signalen van de afgelopen zeven dagen.",

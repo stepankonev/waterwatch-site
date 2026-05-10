@@ -413,6 +413,38 @@ h1, h2, h3, h4 {
 .hero-overlay .hero-qr     { animation-delay: 500ms; }
 @keyframes rise { to { opacity: 1; transform: translateY(0); } }
 
+/* Tiny "we just started" notice over the map. Translucent so the canals
+   show through; brief copy so it doesn't crowd the map. */
+.map-notice {
+  position: absolute;
+  bottom: 2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  background: rgba(253, 250, 241, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.42rem 0.95rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+  text-align: center;
+  max-width: calc(100% - 2.5rem);
+  pointer-events: none;
+  box-shadow: 0 6px 18px -10px rgba(10, 37, 64, 0.25);
+}
+@media (max-width: 600px) {
+  .map-notice {
+    font-size: 0.66rem;
+    padding: 0.36rem 0.7rem;
+    bottom: 1rem;
+    line-height: 1.4;
+  }
+}
+
 /* Floating legend (bottom-left, hidden on small screens) */
 .map-legend-overlay {
   position: absolute;
