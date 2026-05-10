@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T07:12:12.708079+00:00",
+  "generated_at": "2026-05-10T07:14:08.925262+00:00",
   "window_days": 7,
   "report_count": 9,
   "stats": {
@@ -83,9 +83,14 @@
     "delta": 9
   },
   "narrative": {
-    "intro": "",
-    "by_type": {},
-    "outlook": "",
-    "thanks": ""
+    "intro": "<p>Nine approved reports this week, up from zero the previous period. The dominant pattern is a mix of surface debris and significant algal blooms, with the <strong>Prinsengracht</strong> seeing the most activity.</p>",
+    "by_type": {
+      "trash": "<p>Four reports across the <strong>Prinsengracht</strong>, <strong>Grimburgwal</strong>, and <strong>Krom Boomssloot</strong> — mostly small litter like plastic bottles, though a couple of submerged e-scooters and a shopping cart were noted.</p>",
+      "other": "<p>One report from the <strong>Prinsengracht</strong> describing unusually milky-grey water near a drainage outflow, a concerning observation.</p>",
+      "blooming": "<p>Three reports from the <strong>Prinsengracht</strong>, <strong>Snoekjesgracht</strong>, and <strong>Rokin</strong>; some areas are seeing dense green-blue scum and surface mats, indicating a severe bloom in some spots.</p>",
+      "petroleum": "<p>A single iridescent rainbow sheen was spotted near a moored boat on the <strong>Prinsengracht</strong>, which appears to be a minor incident.</p>"
+    },
+    "outlook": "<p>Temperatures remain cool, with highs peaking at 15.9 °C and lows dipping as low as 4.8 °C. These conditions should slow or pause the expansion of the algal blooms reported this week.</p>",
+    "thanks": "<p>Thank you to the nine citizens who shared their photos and reports. Your vigilance keeps the water clear and the city's canals are better for it. To everyone reading: if you spot something unusual, please send us the next report. 💧</p>"
   }
 }
