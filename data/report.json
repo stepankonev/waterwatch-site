@@ -1,0 +1,96 @@
+{
+  "generated_at": "2026-05-10T05:40:10.861101+00:00",
+  "window_days": 7,
+  "report_count": 9,
+  "stats": {
+    "total": 9,
+    "by_type": {
+      "trash": {
+        "count": 4,
+        "max_criticality": 3,
+        "top_canals": [
+          "Prinsengracht",
+          "Grimburgwal",
+          "Krom Boomssloot"
+        ],
+        "examples": [
+          "A single e-scooter visible just below the surface.",
+          "A single plastic bottle drifting along the embankment.",
+          "Shopping cart half-submerged near the bridge piling."
+        ]
+      },
+      "other": {
+        "count": 1,
+        "max_criticality": 3,
+        "top_canals": [
+          "Prinsengracht"
+        ],
+        "examples": [
+          "Unusually milky-grey water near a drainage outflow."
+        ]
+      },
+      "blooming": {
+        "count": 3,
+        "max_criticality": 5,
+        "top_canals": [
+          "Prinsengracht",
+          "Snoekjesgracht",
+          "Rokin"
+        ],
+        "examples": [
+          "Surface entirely covered in green-blue scum — full bloom.",
+          "Dense surface mat covering roughly a third of the visible water.",
+          "Patches of greenish water near the houseboat moorings."
+        ]
+      },
+      "petroleum": {
+        "count": 1,
+        "max_criticality": 2,
+        "top_canals": [
+          "Prinsengracht"
+        ],
+        "examples": [
+          "Iridescent rainbow sheen across a moderate area near a moored boat."
+        ]
+      }
+    },
+    "top_canals": [
+      {
+        "name": "Prinsengracht",
+        "count": 4
+      },
+      {
+        "name": "Grimburgwal",
+        "count": 1
+      },
+      {
+        "name": "Krom Boomssloot",
+        "count": 1
+      },
+      {
+        "name": "Snoekjesgracht",
+        "count": 1
+      },
+      {
+        "name": "Keizersgracht",
+        "count": 1
+      }
+    ]
+  },
+  "trend": {
+    "current": 9,
+    "prior": 0,
+    "delta": 9
+  },
+  "narrative": {
+    "intro": "<p>Nine approved reports this week, up from zero the previous period. The main pattern is a mix of surface debris and significant algae blooms, with the <strong>Prinsengracht</strong> seeing the most activity.</p>",
+    "by_type": {
+      "trash": "<p>Reports from the <strong>Prinsengracht</strong>, <strong>Grimburgwal</strong>, and <strong>Krom Boomssloot</strong> described submerged e-scooters, a drifting plastic bottle and a half-submerged shopping cart; these are mostly minor issues.</p>",
+      "other": "<p>One report from the <strong>Prinsengracht</strong> noted unusually milky-grey water near a drainage outflow, which is a concerning observation.</p>",
+      "blooming": "<p>Significant blooms were spotted on the <strong>Prinsengracht</strong>, <strong>Snoekjesgracht</strong>, and <strong>Rokin</strong>, ranging from greenish patches to a full surface cover of blue-green scum.</p>",
+      "petroleum": "<p>A moderate iridescent rainbow sheen was reported near a moored boat on the <strong>Prinsengracht</strong>, which appears to be a minor incident.</p>"
+    },
+    "outlook": "<p>Temperatures remain cool, with highs staying below 16 °C and rainfall between 0.0 and 2.1 mm daily. These conditions should slow or pause the expansion of the reported algae blooms.</p>",
+    "thanks": "<p>Thank you to the nine citizens who sent in their reports this week. Your observations help us keep a clear picture of the water's health. To everyone reading: when you spot something off in the canals, please send the next report. 💧</p>"
+  }
+}
