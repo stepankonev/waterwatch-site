@@ -227,8 +227,26 @@ h1, h2, h3, h4 {
   color: var(--paper);
 }
 @media (max-width: 760px) {
-  .lang-toggle { font-size: 0.7rem; }
+  /* Tighten the header so brand + DEMO pill + lang toggle + bot CTA
+     all fit on a phone-width row without flex-shrinking the toggle
+     into illegibility. */
+  .site-header .container {
+    gap: 0.5rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+  }
+  .brand { min-width: 0; }
+  .demo-pill { margin-left: 0.35rem; }
+  .lang-toggle {
+    flex-shrink: 0;
+    font-size: 0.68rem;
+  }
   .lang-toggle button { padding: 0.3rem 0.55rem; }
+  #header-cta {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    padding: 0.45rem 0.75rem;
+  }
 }
 .site-nav a {
   color: var(--ink-soft);
