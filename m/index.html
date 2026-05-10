@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WaterWatch · Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#0b3d59">
+  <link rel="stylesheet" href="/vendor/maplibre-gl.css">
+  <style>
+    :root {
+      --paper:      #f4ecd8;
+      --paper-card: #fdfaf1;
+      --ink:        #0a2540;
+      --ink-soft:   #4a5b6e;
+      --canal:      #0b3d59;
+      --mint:       #1ec8a3;
+      --rule:       rgba(10, 37, 64, 0.20);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%; width: 100%; overflow: hidden;
+      background: var(--paper);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+    }
+    #map { position: fixed; inset: 0; z-index: 0; }
+
+    /* Floating brand pill */
+    .brand-tag {
+      position: fixed;
+      top: max(12px, env(safe-area-inset-top, 12px));
+      left: 12px;
+      z-index: 100;
+      padding: 0.4rem 0.7rem;
+      background: rgba(253, 250, 241, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-family: "Times New Roman", Georgia, serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: var(--canal);
+      pointer-events: none;
+      user-select: none;
+    }
+    .brand-tag span { color: var(--mint); font-style: italic; }
+
+    /* Floating count pill */
+    .count-tag {
+      position: fixed;
+      top: max(12px, env(safe-area-inset-top, 12px));
+      right: 12px;
+      z-index: 100;
+      padding: 0.4rem 0.7rem;
+      background: rgba(253, 250, 241, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      pointer-events: none;
+    }
+    .count-tag .dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      background: var(--mint);
+      border-radius: 50%;
+      margin-right: 0.45rem;
+      vertical-align: 0.04em;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+
+    /* Popup styling — match the main site's editorial card */
+    .maplibregl-popup-content {
+      border-radius: 8px !important;
+      background: var(--paper-card) !important;
+      color: var(--ink) !important;
+      border: 1px solid var(--rule) !important;
+      box-shadow: 0 14px 30px -12px rgba(10, 37, 64, 0.35) !important;
+      padding: 11px 13px !important;
+      font-size: 0.9rem !important;
+      line-height: 1.5;
+    }
+    .maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+    .maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+    .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+      border-top-color: var(--paper-card) !important;
+    }
+    .maplibregl-popup-anchor-top .maplibregl-popup-tip,
+    .maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+    .maplibregl-popup-anchor-top-right .maplibregl-popup-tip {
+      border-bottom-color: var(--paper-card) !important;
+    }
+    .maplibregl-popup-content strong {
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 1.04rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.15rem;
+      color: var(--canal);
+      letter-spacing: -0.01em;
+    }
+    .maplibregl-popup-content em {
+      color: #169a7d;
+      font-style: italic;
+    }
+    .maplibregl-popup-content p {
+      margin-top: 6px;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--rule);
+      padding-top: 6px;
+    }
+    .maplibregl-ctrl-attrib {
+      background: rgba(244, 236, 216, 0.78) !important;
+      font-family: ui-monospace, "SF Mono", monospace !important;
+      font-size: 0.62rem !important;
+    }
+    .maplibregl-ctrl-bottom-right { z-index: 50 !important; }
+  </style>
+</head>
+<body>
+  <div id="map" aria-label="Live map of approved water-quality reports"></div>
+  <div class="brand-tag">WaterWatch<span>.ai</span></div>
+  <div class="count-tag"><span class="dot"></span><span id="count">—</span></div>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="/vendor/maplibre-gl.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
