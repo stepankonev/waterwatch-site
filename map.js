@@ -187,6 +187,24 @@ function fillStats(_data) {
   // dashboards can re-enable per-element hooks without changing the call site.
 }
 
+/* ---------- Google Analytics (loaded only if site.json carries an ID) ---- */
+
+function loadGA(measurementId) {
+  if (!measurementId || /[^A-Za-z0-9-]/.test(measurementId)) return;
+  if (window.__ga_loaded) return;
+  window.__ga_loaded = true;
+
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(measurementId);
+  document.head.appendChild(s);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", measurementId, { anonymize_ip: true });
+}
+
 /* ---------- Bot links / QR ----------------------------------------- */
 
 function wireBotLinks(botUrl) {
@@ -367,7 +385,10 @@ document
 
 fetch("data/site.json")
   .then((r) => (r.ok ? r.json() : null))
-  .then((meta) => wireBotLinks(meta?.bot_url || ""))
+  .then((meta) => {
+    wireBotLinks(meta?.bot_url || "");
+    loadGA(meta?.ga_id || "");
+  })
   .catch(() => wireBotLinks(""));
 
 fetch("data/reports.json")
