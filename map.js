@@ -3,7 +3,9 @@
 const AMSTERDAM = [4.895168, 52.370216]; // [lon, lat] for MapLibre
 
 // Translator shortcut. i18n.js sets up window.WW; map.js loads after it.
-const t = (key, vars) => (window.WW ? window.WW.t(key, vars) : key);
+// Named `tr` (not `t`) so it doesn't collide with the global `t` that
+// maplibre-gl's minified bundle leaks to window scope.
+const tr = (key, vars) => (window.WW ? window.WW.t(key, vars) : key);
 
 const PROBLEM_META = {
   trash:    { icon: "🛒" },
@@ -136,11 +138,11 @@ function setupReportLayer() {
   map.on("click", "reports-circle", (e) => {
     const f = e.features[0];
     const p = f.properties;
-    const label = t("type." + p.problem_type) || p.problem_type;
+    const label = tr("type." + p.problem_type) || p.problem_type;
     const date = String(p.created_at || "").slice(0, 10);
     const where = p.canal_name ? `<em>${escapeHtml(p.canal_name)}</em><br>` : "";
     const rationale = p.rationale ? `<p>${escapeHtml(p.rationale)}</p>` : "";
-    const sevWord = t("map.legendTitle");
+    const sevWord = tr("map.legendTitle");
     new maplibregl.Popup({ closeButton: true, maxWidth: "280px" })
       .setLngLat(f.geometry.coordinates)
       .setHTML(
@@ -215,28 +217,28 @@ function trendChip(trend) {
   const d = trend.delta ?? 0;
   if (d === 0)
     return `<span class="trend trend-flat">${escapeHtml(
-      t("trend.steady", { current: trend.current, prior: trend.prior }),
+      tr("trend.steady", { current: trend.current, prior: trend.prior }),
     )}</span>`;
   if (d > 0)
     return `<span class="trend trend-up">${escapeHtml(
-      t("trend.up", { delta: d, prior: trend.prior, current: trend.current }),
+      tr("trend.up", { delta: d, prior: trend.prior, current: trend.current }),
     )}</span>`;
   return `<span class="trend trend-down">${escapeHtml(
-    t("trend.down", { delta: d, prior: trend.prior, current: trend.current }),
+    tr("trend.down", { delta: d, prior: trend.prior, current: trend.current }),
   )}</span>`;
 }
 
 function renderTypeCard(type, stats, narrative) {
   const meta = PROBLEM_META[type] || PROBLEM_META.other;
-  const label = t("type." + type) || type;
+  const label = tr("type." + type) || type;
   const canals = (stats.top_canals || [])
     .map((c) => `<span class="canal-chip">${escapeHtml(c)}</span>`)
     .join("");
-  const wordReport = t(stats.count === 1 ? "type.report" : "type.reports");
-  const narrativeHtml = narrative || `<p>${escapeHtml(t("type.noNarrative"))}</p>`;
+  const wordReport = tr(stats.count === 1 ? "type.report" : "type.reports");
+  const narrativeHtml = narrative || `<p>${escapeHtml(tr("type.noNarrative"))}</p>`;
   const maxCrit =
     stats.max_criticality && stats.max_criticality > 0
-      ? `<span class="type-crit">${escapeHtml(t("type.maxSeverity", { n: stats.max_criticality }))}</span>`
+      ? `<span class="type-crit">${escapeHtml(tr("type.maxSeverity", { n: stats.max_criticality }))}</span>`
       : "";
   return `
     <article class="type-card type-${type}">
@@ -268,9 +270,9 @@ function renderStructuredReport(report) {
   if (narrative.intro) {
     html += narrative.intro;
   } else if (stats.total === 0) {
-    html += `<p>${escapeHtml(t("report.empty"))}</p>`;
+    html += `<p>${escapeHtml(tr("report.empty"))}</p>`;
   } else {
-    html += `<p>${escapeHtml(t("report.loading"))}</p>`;
+    html += `<p>${escapeHtml(tr("report.loading"))}</p>`;
   }
   const chip = trendChip(trend);
   if (chip) html += chip;
@@ -286,7 +288,7 @@ function renderStructuredReport(report) {
 
   if (narrative.outlook) {
     html += `<section class="report-outlook">
-      <p class="report-outlook-eyebrow">${escapeHtml(t("report.outlookEyebrow"))}</p>
+      <p class="report-outlook-eyebrow">${escapeHtml(tr("report.outlookEyebrow"))}</p>
       <div class="report-outlook-body">${narrative.outlook}</div>
     </section>`;
   }
@@ -307,7 +309,7 @@ function setReport(report) {
   const footerUpdated = document.getElementById("footer-updated");
 
   if (!report && !_lastReport) {
-    body.innerHTML = `<p>${escapeHtml(t("report.noReport"))}</p>`;
+    body.innerHTML = `<p>${escapeHtml(tr("report.noReport"))}</p>`;
     return;
   }
   const r = report || _lastReport;
@@ -317,12 +319,12 @@ function setReport(report) {
       year: "numeric", month: "short", day: "numeric",
       hour: "2-digit", minute: "2-digit",
     });
-    meta.textContent = t("report.updated", { date: dt });
+    meta.textContent = tr("report.updated", { date: dt });
     if (footerUpdated) {
       const short = d.toLocaleDateString(window.WW?.lang || undefined, {
         month: "short", day: "numeric",
       });
-      footerUpdated.textContent = t("report.lastBuild", { date: short });
+      footerUpdated.textContent = tr("report.lastBuild", { date: short });
     }
   }
 

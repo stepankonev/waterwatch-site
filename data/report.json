@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T07:02:43.360402+00:00",
+  "generated_at": "2026-05-10T07:12:12.708079+00:00",
   "window_days": 7,
   "report_count": 9,
   "stats": {
@@ -83,14 +83,9 @@
     "delta": 9
   },
   "narrative": {
-    "intro": "<p>Nine approved reports this week, up from zero the previous period. The dominant pattern is a mix of floating debris and significant algal blooms, with the <strong>Prinsengracht</strong> seeing the most activity.</p>",
-    "by_type": {
-      "trash": "<p>Reports from the <strong>Prinsengracht</strong>, <strong>Grimburgwal</strong>, and <strong>Krom Boomssloot</strong> described a variety of litter, including a submerged e-scooter and a shopping cart, which are more concerning than typical small plastics.</p>",
-      "other": "<p>One report from the <strong>Prinsengracht</strong> noted unusually milky-grey water near a drainage outflow, a moderately concerning observation.</p>",
-      "blooming": "<p>Significant blooms were spotted on the <strong>Prinsengracht</strong>, <strong>Snoekekjesgracht</strong>, and <strong>Rokin</strong>, with some areas completely covered in green-blue scum, indicating a severe case among the reports.</p>",
-      "petroleum": "<p>A single iridescent rainbow sheen was reported on the <strong>Prinsengracht</strong>, which appears to be a minor incident.</p>"
-    },
-    "outlook": "<p>Temperatures remain cool, with highs peaking at 15.9 °C and several days of light rain. These conditions should slow or pause the expansion of the algal blooms reported this week.</p>",
-    "thanks": "<p>Thank you to the nine citizens who shared their observations—your reports make this map possible. To everyone reading: if you spot something unusual in the water, please send it in. 💧</p>"
+    "intro": "",
+    "by_type": {},
+    "outlook": "",
+    "thanks": ""
   }
 }
