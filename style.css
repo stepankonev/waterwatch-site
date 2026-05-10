@@ -149,6 +149,26 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================================
+ * Demo pill — small mono badge next to the brand mark.
+ * ============================================================ */
+
+.demo-pill {
+  display: inline-block;
+  margin-left: 0.55rem;
+  padding: 0.14rem 0.48rem;
+  background: #f0c75e;
+  color: #5a4408;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  border-radius: 4px;
+  vertical-align: middle;
+  transform: translateY(-3px);
+  text-transform: uppercase;
+}
+
+/* ============================================================
  * Header / nav
  * ============================================================ */
 

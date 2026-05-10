@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T07:21:05.484028+00:00",
+  "generated_at": "2026-05-10T07:28:46.462979+00:00",
   "window_days": 7,
   "report_count": 9,
   "stats": {
@@ -83,14 +83,14 @@
     "delta": 9
   },
   "narrative": {
-    "intro": "<p>Nine approved reports this week, up from zero the previous period. The dominant pattern is a mix of surface issues on the <strong>Prinsengracht</strong>, alongside some significant blooming activity across several canals.</p>",
+    "intro": "<p>Nine approved reports this week, up from zero the previous period. The main pattern is a mix of urban litter and significant algae blooms, with the <strong>Prinsengracht</strong> seeing the most activity.</p>",
     "by_type": {
-      "trash": "<p>Reports from the <strong>Prinsengracht</strong>, <strong>Grimburgwal</strong>, and <strong>Krom Boomssloot</strong> described a mix of small litter like plastic bottles and larger submerged objects such as e-scooters and a shopping cart. These were mostly minor to moderate incidents.</p>",
-      "other": "<p>One report from the <strong>Prinsengracht</strong> noted unusually milky-grey water near a drainage outflow, a concerning observation that warrants attention.</p>",
-      "blooming": "<p>Reports from the <strong>Prinsengracht</strong>, <strong>Snoekjesgracht</strong>, and <strong>Rokin</strong> described dense green-blue scum and surface mats, with one case being a severe full bloom.</p>",
-      "petroleum": "<p>A single iridescent rainbow sheen was reported on the <strong>Prinsengracht</strong>, which appears to be a minor incident.</p>"
+      "trash": "<p>Reports from the <strong>Prinsengracht</strong>, <strong>Grimburgwal</strong>, and <strong>Krom Boomssloot</strong> describe a variety of items, including a submerged e-scooter and a shopping cart, which are moderately concerning.</p>",
+      "other": "<p>One report from the <strong>Prinsengracht</strong> noted unusually milky-grey water near a drainage outflow, a moderately concerning observation.</p>",
+      "blooming": "<p>Significant blooms were spotted on the <strong>Prinsengracht</strong>, <strong>Snoekjesgracht</strong>, and <strong>Rokin</strong>, with some areas entirely covered in green-blue scum, representing a severe case among the reports.</p>",
+      "petroleum": "<p>A single rainbow sheen was reported on the <strong>Prinsengracht</strong> near a moored boat, which was mostly minor.</p>"
     },
-    "outlook": "<p>Temperatures remain cool, with highs only reaching 15.9 °C and rainfall occurring on several days. These conditions should slow or pause the blooming activity reported on the <strong>Prinsengracht</strong>, <strong>Snoekjesgracht</strong>, and <strong>Rokin</strong>.</p>",
-    "thanks": "<p>Thank you to the nine citizens who shared their photos this week. Your vigilance helps us see what's happening in the water. To everyone reading: if you spot something unusual, please send us your next report. 💧</p>"
+    "outlook": "<p>Temperatures remain cool, with highs staying below 16 °C and light rain throughout the week. These conditions should slow or pause the expansion of the algae blooms reported on the <strong>Prinsengracht</strong>, <strong>Snoekjesgracht</strong>, and <strong>Rokin</strong>.</p>",
+    "thanks": "<p>Thank you to the nine citizens who shared their photos this week. Your eyes on the water help us keep the city's canalsy clean. To everyone reading: when you spot something off in the water, please send the next report. 💧</p>"
   }
 }
