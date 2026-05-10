@@ -47,6 +47,30 @@
     }
     .brand-tag span { color: var(--mint); font-style: italic; }
 
+    /* Bottom-centered "sample data" note */
+    .map-notice {
+      position: fixed;
+      bottom: max(2.4rem, env(safe-area-inset-bottom, 2.4rem));
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      padding: 0.4rem 0.85rem;
+      background: rgba(253, 250, 241, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+      text-align: center;
+      max-width: calc(100vw - 1.6rem);
+      pointer-events: none;
+      box-shadow: 0 6px 18px -10px rgba(10, 37, 64, 0.25);
+      line-height: 1.4;
+    }
+
     /* Floating count pill */
     .count-tag {
       position: fixed;
@@ -128,6 +152,7 @@
   <div id="map" aria-label="Live map of approved water-quality reports"></div>
   <div class="brand-tag">WaterWatch<span>.ai</span></div>
   <div class="count-tag"><span class="dot"></span><span id="count">—</span></div>
+  <div class="map-notice"><span id="notice">Sample data for now — real reports will replace these as citizens submit.</span></div>
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="/vendor/maplibre-gl.js"></script>

@@ -9,6 +9,21 @@ if (tg) {
   tg.expand();
 }
 
+// Pick NL copy when Telegram tells us the user is Dutch (or the browser is).
+(function localizeNotice() {
+  const lang = (
+    tg?.initDataUnsafe?.user?.language_code ||
+    navigator.language ||
+    "en"
+  ).toLowerCase();
+  if (!lang.startsWith("nl")) return;
+  const el = document.getElementById("notice");
+  if (el) {
+    el.textContent =
+      "Voorlopig voorbeelddata — echte meldingen vervangen deze zodra burgers melden.";
+  }
+})();
+
 // Google Analytics (loaded only if site.json carries an ID).
 // Same Measurement ID as the apex page — GA4 will report /m/ as its
 // own page_path so we can see mini-app traffic separately.
