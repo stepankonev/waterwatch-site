@@ -38,7 +38,7 @@ const I18N = {
     "how.title": "From a phone in your pocket to a map on the web.",
     "how.step1.title": "Snap and share",
     "how.step1.body":
-      "Open the Telegram bot, send a photo of what you see, then share your location with one tap.",
+      "Open the Telegram bot on your phone — send a photo of what you see, then share your location with one tap. The bot is mobile only.",
     "how.step2.title": "Auto-classified",
     "how.step2.body":
       "A vision model reads the photo, identifies the issue (litter, algal bloom, oil sheen, dead fish, dumped objects) and scores how serious it looks.",
@@ -48,7 +48,7 @@ const I18N = {
 
     "banner.eyebrow": "💧 See something?",
     "banner.title": "Tell us in ten seconds.",
-    "banner.sub": "No signup, no app. A Telegram bot and your phone's camera.",
+    "banner.sub": "No signup, no app. Our Telegram bot runs on your phone — mobile only.",
     "banner.cta": "Open WaterWatch on Telegram",
     "banner.qrCaption": "scan with your phone",
 
@@ -104,7 +104,7 @@ const I18N = {
     "how.title": "Van een telefoon in je broekzak tot een kaart op het web.",
     "how.step1.title": "Foto en plaats",
     "how.step1.body":
-      "Open de Telegram-bot, stuur een foto van wat je ziet en deel daarna je locatie met één tik.",
+      "Open de Telegram-bot op je telefoon — stuur een foto van wat je ziet en deel daarna je locatie met één tik. De bot werkt alleen op mobiel.",
     "how.step2.title": "Automatisch geclassificeerd",
     "how.step2.body":
       "Een vision-model leest de foto, herkent het probleem (afval, algenbloei, olielaag, dode vissen, gedumpte objecten) en geeft een ernstscore.",
@@ -114,7 +114,7 @@ const I18N = {
 
     "banner.eyebrow": "💧 Zie je iets?",
     "banner.title": "Laat het ons binnen tien seconden weten.",
-    "banner.sub": "Geen registratie, geen app. Een Telegram-bot en de camera van je telefoon.",
+    "banner.sub": "Geen registratie, geen app. Onze Telegram-bot draait op je telefoon — alleen mobiel.",
     "banner.cta": "Open WaterWatch op Telegram",
     "banner.qrCaption": "scan met je telefoon",
 
