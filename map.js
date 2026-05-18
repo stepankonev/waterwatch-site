@@ -346,12 +346,6 @@ function setReport(report) {
       hour: "2-digit", minute: "2-digit",
     });
     meta.textContent = tr("report.updated", { date: dt });
-    if (footerUpdated) {
-      const short = d.toLocaleDateString(window.WW?.lang || undefined, {
-        month: "short", day: "numeric",
-      });
-      footerUpdated.textContent = tr("report.lastBuild", { date: short });
-    }
   }
 
   if (r.narrative || r.stats) {
@@ -398,6 +392,21 @@ fetch("data/site.json")
     loadGA(meta?.ga_id || "");
   })
   .catch(() => wireBotLinks(""));
+
+// Build stamp written by scripts/publish_site.sh — drives the footer
+// "Last build" date independent of the weekly-report regeneration.
+fetch("data/build.json")
+  .then((r) => (r.ok ? r.json() : null))
+  .then((b) => {
+    const el = document.getElementById("footer-updated");
+    if (!el || !b?.built_at) return;
+    const d = new Date(b.built_at);
+    const short = d.toLocaleDateString(window.WW?.lang || undefined, {
+      year: "numeric", month: "short", day: "numeric",
+    });
+    el.textContent = tr("report.lastBuild", { date: short });
+  })
+  .catch(() => {});
 
 fetch("data/reports.json")
   .then((r) => (r.ok ? r.json() : { reports: [] }))
