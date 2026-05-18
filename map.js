@@ -19,11 +19,11 @@ const PROBLEM_META = {
 const PROBLEM_TYPE_ORDER = ["trash", "blooming", "petroleum", "debris", "other", "none"];
 
 const CRIT_COLORS = {
-  1: "#4a90e2",
-  2: "#f0c75e",
-  3: "#f08a3e",
-  4: "#d24b3b",
-  5: "#6b1715",
+  1: "#5b9cf2",
+  2: "#f0a500",
+  3: "#ff8a3d",
+  4: "#ee4d3a",
+  5: "#a01818",
 };
 
 function criticalityColor(c) {
@@ -43,47 +43,50 @@ function escapeHtml(s) {
 
 const map = new maplibregl.Map({
   container: "map",
-  // OpenFreeMap "positron" — same minimal palette, vector source, fully styleable.
-  style: "https://tiles.openfreemap.org/styles/positron",
+  // Apple-clean: CARTO Positron no-labels variant. The hero text floats
+  // over the top half, so we keep the basemap quiet and label-free; place
+  // names would compete with the centered display headline.
+  style: {
+    version: 8,
+    sources: {
+      carto_light: {
+        type: "raster",
+        tiles: [
+          "https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png",
+          "https://b.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png",
+          "https://c.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png",
+          "https://d.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png",
+        ],
+        tileSize: 256,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &middot; <a href="https://carto.com/">CARTO</a>',
+      },
+    },
+    layers: [
+      {
+        id: "carto-bg",
+        type: "raster",
+        source: "carto_light",
+        paint: { "raster-saturation": -0.15, "raster-brightness-max": 0.97 },
+      },
+    ],
+  },
   center: AMSTERDAM,
-  zoom: 12.5,
+  zoom: 13.4,
   attributionControl: false,
+  // Cooperative gestures: scrolling past the page no longer hijacks
+  // the wheel to zoom the map. Desktop requires Cmd/Ctrl + scroll;
+  // touch requires two fingers. Single-finger swipes scroll the page.
+  cooperativeGestures: true,
 });
 
 map.addControl(
-  new maplibregl.AttributionControl({
-    compact: false,
-    customAttribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &middot; <a href="https://openfreemap.org/">OpenFreeMap</a>',
-  }),
+  new maplibregl.AttributionControl({ compact: false }),
   "bottom-right",
 );
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
 
-// Soft Delft-blue water — a touch brighter than full pastel, still calm.
-const WATER_FILL = "#8fc8e3";
-const WATER_LINE = "#5d9bbb";
-
 map.on("style.load", () => {
-  if (map.getLayer("water")) {
-    map.setPaintProperty("water", "fill-color", WATER_FILL);
-    map.setPaintProperty("water", "fill-opacity", 0.92);
-  }
-  // Hide all line waterways — only the polygon water bodies should show.
-  for (const id of ["waterway", "waterway_line", "water_line", "river"]) {
-    if (map.getLayer(id)) {
-      map.setLayoutProperty(id, "visibility", "none");
-    }
-  }
-  // Warm-paper land tint to match the page palette.
-  for (const id of ["background", "land", "landcover", "earth"]) {
-    if (map.getLayer(id)) {
-      try {
-        map.setPaintProperty(id, "background-color", "#f4ecd8");
-      } catch (e) { /* layer type doesn't take background-color */ }
-    }
-  }
-
   setupReportLayer();
 });
 
@@ -128,8 +131,8 @@ function setupReportLayer() {
         18, ["+", 10, ["*", 2.4, ["get", "criticality"]]],
       ],
       "circle-color": ["get", "color"],
-      "circle-stroke-color": "#0a2540",
-      "circle-stroke-width": 1.4,
+      "circle-stroke-color": "#ffffff",
+      "circle-stroke-width": 2,
       "circle-opacity": 0.95,
     },
   });
@@ -182,9 +185,14 @@ function setText(id, value) {
   if (el) el.textContent = value;
 }
 
-function fillStats(_data) {
-  // Stats currently aren't rendered on the page — kept as a no-op so future
-  // dashboards can re-enable per-element hooks without changing the call site.
+function fillStats(data) {
+  const reports = data.reports || [];
+  const total = data.count ?? reports.length;
+  const canals = new Set(reports.map((r) => r.canal_name).filter(Boolean));
+  const maxCrit = reports.reduce((m, r) => Math.max(m, r.criticality ?? 0), 0);
+  setText("metric-total", total || "0");
+  setText("metric-canals", canals.size || "0");
+  setText("metric-severity", total ? `${maxCrit}/5` : "—");
 }
 
 /* ---------- Google Analytics (loaded only if site.json carries an ID) ---- */

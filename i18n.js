@@ -16,17 +16,24 @@ const I18N = {
     "cta.openBotShort": "Open bot",
     "cta.openBot": "Open the bot",
     "cta.todayReport": "Today's report",
+    "cta.learnMore": "Learn more",
 
     "hero.overline": "since 2026 · amsterdam, nl",
-    "hero.title": "The canals<br>keep their<br><em>own records.</em>",
+    "hero.eyebrow": "LIVE · Amsterdam",
+    "hero.title": "Amsterdam canals water quality, mapped live.",
     "hero.sub":
-      "A citizen-science network watching Amsterdam's grachten with camera phones and a vision model.",
-    "hero.qrCaption": "Scan with<br>your phone<br>to report",
+      "Citizens send photos. AI reads them. The map updates. Mobile-only Telegram bot, no signup.",
+    "hero.qrCaption": "Scan to open the bot",
 
-    "map.legendTitle": "Criticality",
+    "metric.reports": "REPORTS · 7D",
+    "metric.canals": "CANALS",
+    "metric.severe": "MAX SEVERITY",
+
+    "map.legendTitle": "SEVERITY",
     "map.notice": "Sample data for now — real reports will replace these as citizens submit.",
 
-    "report.eyebrow": "📰 This week's report",
+    "report.eyebrow": "▸ WEEKLY REPORT",
+    "report.title": "This week in the canals.",
     "report.sub": "Reading the signal in the last seven days.",
     "report.loading": "Loading the latest summary…",
     "report.empty":
@@ -34,27 +41,29 @@ const I18N = {
     "report.outlookEyebrow": "⛅ The week ahead",
     "report.noReport": "No daily report has been published yet. Check back later.",
 
-    "how.eyebrow": "⚙ How it works",
+    "how.eyebrow": "▸ HOW IT WORKS",
     "how.title": "From a phone in your pocket to a map on the web.",
     "how.step1.title": "Snap and share",
     "how.step1.body":
       "Open the Telegram bot on your phone — send a photo of what you see, then share your location with one tap. The bot is mobile only.",
     "how.step2.title": "Auto-classified",
     "how.step2.body":
-      "A vision model reads the photo, identifies the issue (litter, algal bloom, oil sheen, dead fish, dumped objects) and scores how serious it looks.",
+      "Google's <strong>Gemma 4</strong> vision model reads the photo, identifies the issue (litter, algal bloom, oil sheen, dead fish, dumped objects) and scores how serious it looks — running on a local GPU, no cloud round-trip.",
     "how.step3.title": "Pinned to the map",
     "how.step3.body":
       "Reports appear on the map shortly, pinned to the canal's actual name.",
 
-    "banner.eyebrow": "💧 See something?",
-    "banner.title": "Tell us in ten seconds.",
+    "banner.eyebrow": "▸ CONTRIBUTE",
+    "banner.title": "See something? Tell us in ten seconds.",
     "banner.sub": "No signup, no app. Our Telegram bot runs on your phone — mobile only.",
     "banner.cta": "Open WaterWatch on Telegram",
-    "banner.qrCaption": "scan with your phone",
+    "banner.qrCaption": "scan to open",
 
     // Day-of formatting (used by the report meta line in map.js)
     "report.updated": "Updated {date}",
     "report.lastBuild": "Last build · {date}",
+
+    "footer.poweredBy": "Powered by <strong>Gemma 4</strong>",
 
     // Trend chip phrasing
     "trend.steady": "→ steady ({current} this week, {prior} prior)",
@@ -82,17 +91,24 @@ const I18N = {
     "cta.openBotShort": "Open bot",
     "cta.openBot": "Open de bot",
     "cta.todayReport": "Verslag van vandaag",
+    "cta.learnMore": "Meer info",
 
     "hero.overline": "sinds 2026 · amsterdam, nl",
-    "hero.title": "De grachten<br>houden hun eigen<br><em>verslag bij.</em>",
+    "hero.eyebrow": "LIVE · Amsterdam",
+    "hero.title": "Waterkwaliteit van de Amsterdamse grachten, live op de kaart.",
     "hero.sub":
-      "Een burgernetwerk dat de Amsterdamse grachten in de gaten houdt met cameratelefoons en een vision-model.",
-    "hero.qrCaption": "Scan met<br>je telefoon<br>om te melden",
+      "Burgers sturen foto's. AI leest ze. De kaart werkt zich bij. Telegram-bot, alleen op mobiel, geen registratie.",
+    "hero.qrCaption": "Scan om de bot te openen",
 
-    "map.legendTitle": "Ernst",
+    "metric.reports": "MELDINGEN · 7D",
+    "metric.canals": "GRACHTEN",
+    "metric.severe": "MAX ERNST",
+
+    "map.legendTitle": "ERNST",
     "map.notice": "Voorlopig voorbeelddata — echte meldingen vervangen deze zodra burgers melden.",
 
-    "report.eyebrow": "📰 Verslag van deze week",
+    "report.eyebrow": "▸ WEEKVERSLAG",
+    "report.title": "Deze week in de grachten.",
     "report.sub": "De signalen van de afgelopen zeven dagen.",
     "report.loading": "De samenvatting wordt geladen…",
     "report.empty":
@@ -100,26 +116,28 @@ const I18N = {
     "report.outlookEyebrow": "⛅ De komende week",
     "report.noReport": "Er is nog geen dagverslag gepubliceerd. Kom later terug.",
 
-    "how.eyebrow": "⚙ Hoe het werkt",
+    "how.eyebrow": "▸ HOE HET WERKT",
     "how.title": "Van een telefoon in je broekzak tot een kaart op het web.",
     "how.step1.title": "Foto en plaats",
     "how.step1.body":
       "Open de Telegram-bot op je telefoon — stuur een foto van wat je ziet en deel daarna je locatie met één tik. De bot werkt alleen op mobiel.",
     "how.step2.title": "Automatisch geclassificeerd",
     "how.step2.body":
-      "Een vision-model leest de foto, herkent het probleem (afval, algenbloei, olielaag, dode vissen, gedumpte objecten) en geeft een ernstscore.",
+      "Het <strong>Gemma 4</strong> vision-model van Google leest de foto, herkent het probleem (afval, algenbloei, olielaag, dode vissen, gedumpte objecten) en geeft een ernstscore — draait lokaal op een GPU, geen cloud-rondreis.",
     "how.step3.title": "Op de kaart",
     "how.step3.body":
       "Meldingen verschijnen kort daarna op de kaart, gekoppeld aan de naam van de gracht.",
 
-    "banner.eyebrow": "💧 Zie je iets?",
-    "banner.title": "Laat het ons binnen tien seconden weten.",
+    "banner.eyebrow": "▸ MELDEN",
+    "banner.title": "Zie je iets? Laat het binnen tien seconden weten.",
     "banner.sub": "Geen registratie, geen app. Onze Telegram-bot draait op je telefoon — alleen mobiel.",
     "banner.cta": "Open WaterWatch op Telegram",
-    "banner.qrCaption": "scan met je telefoon",
+    "banner.qrCaption": "scan om te openen",
 
     "report.updated": "Bijgewerkt {date}",
     "report.lastBuild": "Laatste build · {date}",
+
+    "footer.poweredBy": "Aangedreven door <strong>Gemma 4</strong>",
 
     "trend.steady": "→ stabiel ({current} deze week, {prior} ervoor)",
     "trend.up": "▲ +{delta} t.o.v. vorige week ({prior} → {current})",
@@ -173,7 +191,7 @@ function applyLang(lang) {
     if (val !== undefined) el.innerHTML = val;
   });
 
-  document.querySelectorAll(".lang-toggle button").forEach((b) => {
+  document.querySelectorAll(".lang button").forEach((b) => {
     b.classList.toggle("active", b.dataset.lang === lang);
     b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false");
   });
@@ -185,7 +203,7 @@ function applyLang(lang) {
 
 document.addEventListener("DOMContentLoaded", () => {
   applyLang(currentLang);
-  document.querySelectorAll(".lang-toggle button").forEach((b) => {
+  document.querySelectorAll(".lang button").forEach((b) => {
     b.addEventListener("click", () => applyLang(b.dataset.lang));
   });
 });
