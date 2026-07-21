@@ -12,6 +12,7 @@ const I18N = {
   en: {
     "nav.report": "Report",
     "nav.how": "How it works",
+    "nav.boat": "The boat",
 
     "cta.openBotShort": "Open bot",
     "cta.openBot": "Open the bot",
@@ -53,6 +54,14 @@ const I18N = {
     "how.step3.body":
       "Reports appear on the map shortly, pinned to the canal's actual name.",
 
+    "boat.eyebrow": "▸ ON THE WATER",
+    "boat.title": "And a robot boat for the rest.",
+    "boat.body":
+      "Citizens can't be everywhere. So a compact, 3D-printed autonomous boat patrols the canals on its own — steering past traffic and obstacles with a stereo camera, GPS and ROS2 — and films as it goes, for <strong>Gemma 4</strong> to turn each route into the same kind of report.",
+    "boat.spec1": "≈ 1.5 m · 3D-printed",
+    "boat.spec2": "Stereo camera · GPS · ROS2",
+    "boat.spec3": "Routes read by Gemma 4",
+
     "banner.eyebrow": "▸ CONTRIBUTE",
     "banner.title": "See something? Tell us in ten seconds.",
     "banner.sub": "No signup, no app. Our Telegram bot runs on your phone — mobile only.",
@@ -87,6 +96,7 @@ const I18N = {
   nl: {
     "nav.report": "Verslag",
     "nav.how": "Hoe het werkt",
+    "nav.boat": "De boot",
 
     "cta.openBotShort": "Open bot",
     "cta.openBot": "Open de bot",
@@ -127,6 +137,14 @@ const I18N = {
     "how.step3.title": "Op de kaart",
     "how.step3.body":
       "Meldingen verschijnen kort daarna op de kaart, gekoppeld aan de naam van de gracht.",
+
+    "boat.eyebrow": "▸ OP HET WATER",
+    "boat.title": "En een robotboot voor de rest.",
+    "boat.body":
+      "Burgers kunnen niet overal zijn. Daarom patrouilleert een compacte, 3D-geprinte autonome boot zelfstandig door de grachten — langs verkeer en obstakels, met een stereocamera, GPS en ROS2 — en filmt onderweg, zodat <strong>Gemma 4</strong> van elke route hetzelfde soort verslag maakt.",
+    "boat.spec1": "≈ 1,5 m · 3D-geprint",
+    "boat.spec2": "Stereocamera · GPS · ROS2",
+    "boat.spec3": "Routes gelezen door Gemma 4",
 
     "banner.eyebrow": "▸ MELDEN",
     "banner.title": "Zie je iets? Laat het binnen tien seconden weten.",

@@ -557,7 +557,7 @@ ul, ol { list-style: none; }
 /* ============================================================
  * Section common
  * ============================================================ */
-section.report-section, section.how, section.cta-banner {
+section.report-section, section.how, section.boat-section, section.cta-banner {
   padding: clamp(4.5rem, 8vw, 8rem) 0;
 }
 
@@ -808,6 +808,69 @@ section.report-section, section.how, section.cta-banner {
 }
 
 /* ============================================================
+ * Autonomous boat — image + a short note: the second data source.
+ * Photo left, text right on desktop; stacked on mobile.
+ * ============================================================ */
+.boat-section { background: var(--bg); }
+
+.boat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+@media (min-width: 880px) {
+  .boat-grid { grid-template-columns: 1.05fr 0.95fr; }
+}
+
+.boat-media {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-card);
+}
+.boat-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.boat-text { max-width: 42ch; }
+.boat-text .eyebrow { margin-bottom: 0.9rem; }
+.boat-text .section-title {
+  text-align: left;
+  margin: 0 0 1rem;
+  max-width: none;
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+}
+
+.boat-body {
+  font-family: var(--sans);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+.boat-body strong { color: var(--text); font-weight: 600; }
+
+.boat-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.boat-specs li {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  background: var(--bg-gray);
+  border: 1px solid var(--rule);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ============================================================
  * CTA banner — centered, big
  * ============================================================ */
 .cta-banner { background: var(--bg-gray); text-align: center; }
@@ -894,6 +957,14 @@ section.report-section, section.how, section.cta-banner {
 .footer-powered strong {
   color: var(--text);
   font-weight: 600;
+}
+.footer-contact {
+  color: var(--text-soft);
+  text-decoration: none;
+}
+.footer-contact:hover {
+  color: var(--text);
+  text-decoration: underline;
 }
 .footer-meta { margin-left: auto; }
 
