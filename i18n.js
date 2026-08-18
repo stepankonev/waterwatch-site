@@ -62,6 +62,12 @@ const I18N = {
     "boat.spec2": "Stereo camera · GPS · ROS2",
     "boat.spec3": "Routes read by Gemma 4",
 
+    "writeup.eyebrow": "▸ HACKATHON WRITEUP",
+    "writeup.title": "How we built WaterWatch.",
+    "writeup.sub":
+      "The full story behind the project — the Gemma 4 pipeline, the bot and the boat — in our Gemma 4 Good Hackathon writeup on Kaggle.",
+    "writeup.cta": "Read the writeup on Kaggle",
+
     "banner.eyebrow": "▸ CONTRIBUTE",
     "banner.title": "See something? Tell us in ten seconds.",
     "banner.sub": "No signup, no app. Our Telegram bot runs on your phone — mobile only.",
@@ -145,6 +151,12 @@ const I18N = {
     "boat.spec1": "≈ 1,5 m · 3D-geprint",
     "boat.spec2": "Stereocamera · GPS · ROS2",
     "boat.spec3": "Routes gelezen door Gemma 4",
+
+    "writeup.eyebrow": "▸ HACKATHON-WRITE-UP",
+    "writeup.title": "Hoe we WaterWatch hebben gebouwd.",
+    "writeup.sub":
+      "Het hele verhaal achter het project — de Gemma 4-pijplijn, de bot en de boot — in onze Gemma 4 Good Hackathon-write-up op Kaggle.",
+    "writeup.cta": "Lees de write-up op Kaggle",
 
     "banner.eyebrow": "▸ MELDEN",
     "banner.title": "Zie je iets? Laat het binnen tien seconden weten.",
