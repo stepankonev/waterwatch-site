@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>WaterWatch.ai — Amsterdam canals water quality, live</title>
+  <title>WaterWatch.ai — an autonomous boat for Amsterdam's canals</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Live citizen-reported water quality map for Amsterdam canals.">
+  <meta name="description" content="A compact, 3D-printed autonomous boat that patrols Amsterdam's canals and turns every route into a clear water-quality report.">
   <meta name="theme-color" content="#fbfbfd">
-  <link rel="stylesheet" href="vendor/maplibre-gl.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,6 +19,21 @@
       <symbol id="i-chev" viewBox="0 0 16 16">
         <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       </symbol>
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24">
+        <rect x="6.5" y="5" width="4" height="14" rx="1.2" fill="currentColor"/>
+        <rect x="13.5" y="5" width="4" height="14" rx="1.2" fill="currentColor"/>
+      </symbol>
+      <!-- Tech icons: 24×24, 1.6 stroke -->
+      <symbol id="t-camera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="10" rx="3"/><circle cx="8" cy="12" r="2.4"/><circle cx="16" cy="12" r="2.4"/></g></symbol>
+      <symbol id="t-gps" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></g></symbol>
+      <symbol id="t-imu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 5.5l2 6.5-2 6.5-2-6.5z"/></g></symbol>
+      <symbol id="t-ros" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.2"/><circle cx="18.5" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.6 6.8l2.9 9.2M16.4 6.8l-2.9 9.2M7.7 6h8.6"/></g></symbol>
+      <symbol id="t-nav" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c3-1 4-5 8-7s6-5 8-8"/><circle cx="20" cy="4" r="1.6"/><path d="M9 6h3v3M15 15h3v3"/></g></symbol>
+      <symbol id="t-hull" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 13.5h19l-3 4.5h-13z"/><path d="M11 13.5V7h3l1.5 3"/><path d="M2 21c1.7 0 1.7-1 3.3-1s1.7 1 3.4 1 1.6-1 3.3-1 1.7 1 3.3 1 1.7-1 3.4-1 1.6 1 3.3 1"/></g></symbol>
+      <symbol id="t-probe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s-5.5 6.2-5.5 10.2a5.5 5.5 0 0 0 11 0C17.5 9.7 12 3.5 12 3.5z"/><path d="M9.5 14.5h5M12 12v5"/></g></symbol>
     </defs>
   </svg>
 </head>
@@ -28,195 +42,219 @@
     <div class="topbar-row">
       <a class="brand" href="#top">waterwatch</a>
       <nav class="nav">
-        <a href="#how" data-i18n="nav.how">How it works</a>
-        <a href="#boat" data-i18n="nav.boat">The boat</a>
-        <a href="#report" data-i18n="nav.report">This week</a>
+        <a href="#tech">Technology</a>
+        <a href="#ride">Ride along</a>
+        <a href="#report">Reports</a>
       </nav>
-      <div class="lang">
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="nl">NL</button>
-      </div>
-      <a id="header-cta" class="btn btn-mini mobile-only" href="#" target="_blank" rel="noopener">
-        <span data-i18n="cta.openBotShort">Open</span>
-        <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><use href="#i-arrow"/></svg>
-      </a>
     </div>
   </header>
 
   <main>
-    <!-- HERO — split: text left, QR right (desktop); centered stack (mobile). -->
+    <!-- HERO — statement, then the boat itself at scale -->
     <section class="hero" aria-label="Intro">
       <div class="hero-content">
-        <div class="hero-grid">
-          <div class="hero-text">
-            <p class="eyebrow" data-i18n="hero.eyebrow">LIVE · AMSTERDAM</p>
-            <h1 class="hero-title" data-i18n="hero.title">Amsterdam canals water quality, mapped live.</h1>
-            <p class="hero-sub" data-i18n="hero.sub">
-              Citizens send photos. AI reads them. The map updates.
-              Mobile-only Telegram bot, no signup.
-            </p>
-            <p class="hero-powered" data-i18n="footer.poweredBy">Powered by <strong>Gemma 4</strong></p>
+        <p class="eyebrow">AUTONOMOUS SURVEY BOAT · AMSTERDAM</p>
+        <h1 class="hero-title">An <span class="hl">autonomous</span> robot boat that watches over Amsterdam's canals with <span class="hl">AI</span>.</h1>
+        <p class="hero-sub">Compact and 3D-printed, it patrols the canals on its own — filming the water, measuring it with onboard water-quality sensors, and turning every route into a clear report.</p>
+        <div class="hero-cta-stack">
+          <a class="btn btn-primary btn-lg" href="#ride">
+            <span>Ride along</span>
+            <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="hero-link" href="#tech">
+            <span>See the technology</span>
+            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><use href="#i-chev"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <figure class="hero-stage">
+        <div class="hero-photo">
+          <video id="hero-video" autoplay muted loop playsinline preload="auto"
+                 poster="img/hero-boat-poster.jpg" aria-label="The orange WaterWatch autonomous boat cruising along an Amsterdam canal">
+            <source src="img/hero-boat.mp4" type="video/mp4">
+          </video>
+          <button type="button" class="hero-pause" id="hero-pause" aria-label="Pause video">
+            <svg viewBox="0 0 24 24" width="14" height="14"><use href="#i-pause"/></svg>
+          </button>
+        </div>
+      </figure>
+    </section>
+
+    <!-- WHY A ROBOT -->
+    <section class="challenge" id="why">
+      <div class="container">
+        <div class="split">
+          <div class="split-text">
+            <p class="eyebrow">WHY A ROBOT</p>
+            <h2 class="section-title">100+ km of canals. Occasional inspections can't keep up.</h2>
+            <p class="body-lg">Amsterdam's canals are well kept, yet local problems still surface: floating waste, algal blooms, oil sheens. Across a network this large, catching them early is slow and expensive.</p>
+            <p class="body-lg">Autonomous boats remove the bottleneck. Several can run at once and cover the whole network — measuring far more densely, in space and in time.</p>
           </div>
-          <figure class="hero-qr desktop-only" aria-label="Open the bot from your phone">
-            <img id="qr-hero" class="qr-img" src="data/bot_qr.png"
-                 alt="QR code that opens the Telegram bot" hidden>
-            <figcaption data-i18n="hero.qrCaption">Scan to open the bot</figcaption>
+          <figure class="split-media media-card">
+            <img src="img/canal-issues.jpg" alt="Floating litter, a shopping cart in the water and a canal covered in duckweed" width="1184" height="672" loading="lazy">
           </figure>
         </div>
-
-        <div class="hero-cta-stack">
-          <!-- Mobile: primary action is opening the bot in Telegram -->
-          <a id="hero-cta" class="btn btn-primary btn-lg mobile-only"
-             href="#" target="_blank" rel="noopener">
-            <span data-i18n="cta.openBot">Open the bot</span>
-            <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-          <!-- Desktop: bright pill goes to the weekly report -->
-          <a class="btn btn-primary btn-lg desktop-only" href="#report">
-            <span data-i18n="cta.todayReport">This week's report</span>
-            <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-          <!-- Mobile secondary text link -->
-          <a class="hero-link mobile-only" href="#report">
-            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><use href="#i-chev"/></svg>
-            <span data-i18n="cta.todayReport">This week's report</span>
-          </a>
-        </div>
-
-        <!-- Product showcase: phone shot of the bot conversation
-             pointed at the Gemma 4 vision model that classifies it. -->
-        <figure class="hero-showcase">
-          <img src="img/hero-mockup.png"
-               alt="Telegram bot photo flowing into the Gemma 4 vision model"
-               width="1567" height="894" loading="lazy">
-        </figure>
       </div>
     </section>
 
-    <!-- WRITEUP HIGHLIGHT — link to the Kaggle hackathon writeup -->
-    <section class="writeup-strip" aria-label="Hackathon writeup">
-      <div class="container container-narrow">
-        <div class="writeup-card">
-          <p class="eyebrow" data-i18n="writeup.eyebrow">HACKATHON WRITEUP</p>
-          <h2 class="writeup-title" data-i18n="writeup.title">How we built WaterWatch.</h2>
-          <p class="writeup-sub" data-i18n="writeup.sub">The full story behind the project — the Gemma 4 pipeline, the bot and the boat — in our Gemma 4 Good Hackathon writeup on Kaggle.</p>
-          <a class="btn-link" href="https://www.kaggle.com/competitions/gemma-4-good-hackathon/writeups/new-writeup-1778609511724" target="_blank" rel="noopener">
-            <span data-i18n="writeup.cta">Read the writeup on Kaggle</span>
-            <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><use href="#i-arrow"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- MAP SHOWCASE — the product, presented as its own block -->
-    <section class="map-section" id="map-section" aria-label="Live map">
-      <div id="map" aria-label="Live map of approved water-quality reports"></div>
-
-      <!-- Glass stats card (top-right on desktop, static on mobile) -->
-      <div class="map-stats" aria-label="Live statistics">
-        <div class="stat">
-          <span class="stat-value" id="metric-total">—</span>
-          <span class="stat-label" data-i18n="metric.reports">Reports · 7d</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat">
-          <span class="stat-value" id="metric-canals">—</span>
-          <span class="stat-label" data-i18n="metric.canals">Canals</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat">
-          <span class="stat-value" id="metric-severity">—</span>
-          <span class="stat-label" data-i18n="metric.severe">Max severity</span>
-        </div>
-      </div>
-
-      <!-- Sample-data notice (centered bottom) -->
-      <div class="map-notice" role="note">
-        <span data-i18n="map.notice">Sample data for now — real reports will replace these as citizens submit.</span>
-      </div>
-    </section>
-
-    <!-- WEEKLY REPORT -->
-    <section class="report-section" id="report">
-      <div class="container container-narrow">
-        <header class="section-head section-head-center">
-          <p class="eyebrow" data-i18n="report.eyebrow">WEEKLY REPORT</p>
-          <h2 class="section-title" data-i18n="report.title">This week in the canals.</h2>
-          <p class="section-sub" id="report-meta" data-i18n="report.sub">Reading the signal in the last seven days.</p>
-        </header>
-        <article class="report-card" id="report-body">
-          <p data-i18n="report.loading">Loading the latest summary…</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS — dark spotlight -->
-    <section class="how dark-section" id="how">
+    <!-- TECHNOLOGY (dark spotlight) -->
+    <section class="tech dark-section" id="tech">
       <div class="container">
         <header class="section-head section-head-center">
-          <p class="eyebrow eyebrow-on-dark" data-i18n="how.eyebrow">HOW IT WORKS</p>
-          <h2 class="section-title" data-i18n="how.title">From phone to map. In seconds.</h2>
+          <p class="eyebrow eyebrow-on-dark">TECHNOLOGY</p>
+          <h2 class="section-title">A floating computer. Built to find its own way.</h2>
+          <p class="section-sub section-sub-dark">Canals are busy: moving boats, floating objects, sudden obstacles. The boat fuses its sensors through ROS2 and steers itself along a given route with <span class="hl">AI</span>.</p>
         </header>
-        <ol class="steps">
-          <li>
-            <span class="step-num">01</span>
-            <h3 data-i18n="how.step1.title">Snap and share</h3>
-            <p data-i18n="how.step1.body">Open the Telegram bot on your phone — send a photo of what you see, then share your location with one tap.</p>
-          </li>
-          <li>
-            <span class="step-num">02</span>
-            <h3 data-i18n="how.step2.title">Auto-classified</h3>
-            <p data-i18n="how.step2.body">A vision model reads the photo, identifies the issue and scores how serious it looks.</p>
-          </li>
-          <li>
-            <span class="step-num">03</span>
-            <h3 data-i18n="how.step3.title">Pinned to the map</h3>
-            <p data-i18n="how.step3.body">Reports appear on the map shortly, pinned to the canal's actual name.</p>
-          </li>
+
+        <div class="tech-grid">
+          <article class="tech-card tech-card-wide">
+            <svg class="tech-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#t-probe"/></svg>
+            <div>
+              <h3>Integrated water-quality sensors</h3>
+              <p>The boat can carry in-water sensors alongside its camera, so assessment doesn't stop at what's visible on the surface. Sensor readings and visual findings land in the same geo-tagged report.</p>
+            </div>
+          </article>
+          <article class="tech-card">
+            <svg class="tech-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#t-camera"/></svg>
+            <h3>Stereo camera</h3>
+            <p>RGB plus depth. Sees obstacles in 3D and films the water for analysis.</p>
+          </article>
+          <article class="tech-card">
+            <svg class="tech-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#t-gps"/></svg>
+            <h3>GPS</h3>
+            <p>Every frame is stamped with time and position, so every finding has an address.</p>
+          </article>
+          <article class="tech-card">
+            <svg class="tech-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#t-imu"/></svg>
+            <h3>Accelerometer &amp; magnetometer</h3>
+            <p>Heading and motion, for stable navigation between GPS fixes.</p>
+          </article>
+          <article class="tech-card">
+            <svg class="tech-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#t-ros"/></svg>
+            <h3>ROS2</h3>
+            <p>One robotics stack ties sensors, control and logging together.</p>
+          </article>
+          <article class="tech-card">
+            <svg class="tech-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#t-nav"/></svg>
+            <h3>Onboard navigation model</h3>
+            <p>A custom, lightweight model steers past traffic and obstacles in real time.</p>
+          </article>
+          <article class="tech-card">
+            <svg class="tech-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#t-hull"/></svg>
+            <h3>3D-printed hull</h3>
+            <p>About 1.5 m long. Small enough for narrow canals, cheap enough to build a fleet.</p>
+          </article>
+        </div>
+
+        <!-- Pipeline: route → report -->
+        <ol class="pipeline" aria-label="From route to report">
+          <li><span class="pipe-num">01</span><h3>Navigate</h3><p>Follows a route on its own, avoiding obstacles.</p></li>
+          <li><span class="pipe-num">02</span><h3>Capture</h3><p>Video, frames and sensor data, all time- and geo-stamped.</p></li>
+          <li><span class="pipe-num">03</span><h3>Analyse</h3><p>A local vision model reads the footage, frame by frame.</p></li>
+          <li><span class="pipe-num">04</span><h3>Report</h3><p>One concise page: issues, locations, severity.</p></li>
         </ol>
       </div>
     </section>
 
-    <!-- AUTONOMOUS BOAT — the second data source, kept deliberately brief -->
-    <section class="boat-section" id="boat" aria-label="Autonomous monitoring boat">
+    <!-- RIDE ALONG — real frames from one survey run + synced GPS trace -->
+    <section class="ride-section" id="ride">
       <div class="container">
-        <div class="boat-grid">
-          <figure class="boat-media">
-            <img src="img/boat_orange.jpeg"
-                 alt="WaterWatch's orange autonomous monitoring boat on an Amsterdam canal"
-                 width="1280" height="720" loading="lazy">
-          </figure>
-          <div class="boat-text">
-            <p class="eyebrow" data-i18n="boat.eyebrow">▸ ON THE WATER</p>
-            <h2 class="section-title" data-i18n="boat.title">And a robot boat for the rest.</h2>
-            <p class="boat-body" data-i18n="boat.body">Citizens can't be everywhere. So a compact, 3D-printed autonomous boat patrols the canals on its own — steering past traffic and obstacles with a stereo camera, GPS and ROS2 — and films as it goes, for <strong>Gemma 4</strong> to turn each route into the same kind of report.</p>
-            <ul class="boat-specs">
-              <li data-i18n="boat.spec1">≈ 1.5 m · 3D-printed</li>
-              <li data-i18n="boat.spec2">Stereo camera · GPS · ROS2</li>
-              <li data-i18n="boat.spec3">Routes read by Gemma 4</li>
-            </ul>
+        <header class="section-head section-head-center">
+          <p class="eyebrow">RIDE ALONG · SHORT CUT</p>
+          <h2 class="section-title">A few minutes from a ride that lasts hours and covers kilometers.</h2>
+          <p class="section-sub">This is a short excerpt of one multi-hour survey through Amsterdam-Noord — onboard-camera frames, each with its GPS fix, played back with the route. Press play or drag the slider.</p>
+        </header>
+
+        <div class="ride" id="ride-player">
+          <div class="ride-grid">
+            <figure class="ride-player">
+              <video id="ride-video" muted playsinline preload="metadata" poster="run/poster.jpg">
+                <source src="run/boat-run.mp4" type="video/mp4">
+              </video>
+              <button type="button" class="ride-bigplay" id="ride-bigplay" aria-label="Play">
+                <svg viewBox="0 0 24 24" width="30" height="30"><use href="#i-play"/></svg>
+              </button>
+            </figure>
+
+            <figure class="ride-map">
+              <svg id="ride-route" viewBox="0 0 900 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map of the survey route with the boat's current position">
+                <image href="run/route-map.jpg" x="0" y="0" width="900" height="700"/>
+                <path class="route-full" d=""/>
+                <path class="route-done" d=""/>
+                <circle class="route-dot-halo" r="18" cx="-50" cy="-50"/>
+                <circle class="route-dot" r="8" cx="-50" cy="-50"/>
+              </svg>
+              <figcaption>© OpenStreetMap contributors</figcaption>
+            </figure>
           </div>
+
+          <div class="ride-controls">
+            <button type="button" class="ride-btn" id="ride-toggle" aria-label="Play">
+              <svg viewBox="0 0 24 24" width="18" height="18"><use href="#i-play"/></svg>
+            </button>
+            <input type="range" id="ride-range" min="0" max="601" value="0" step="1" aria-label="Frame">
+            <span class="ride-readout">
+              <span id="ride-frame">frame 1 / 602</span>
+              <span id="ride-time">17:25:57</span>
+              <span id="ride-coords">52.40728, 4.92066</span>
+            </span>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-banner">
-      <div class="container container-narrow">
-        <div class="cta-content">
-          <p class="eyebrow" data-i18n="banner.eyebrow">GET STARTED</p>
-          <h2 class="cta-title" data-i18n="banner.title">See something? Tell us.</h2>
-          <p class="cta-sub" data-i18n="banner.sub">It takes ten seconds. No signup, no app. Mobile only.</p>
-          <div class="cta-actions">
-            <a id="cta-bot" class="btn btn-primary btn-lg mobile-only" href="#" target="_blank" rel="noopener">
-              <span data-i18n="banner.cta">Open WaterWatch on Telegram</span>
-              <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><use href="#i-arrow"/></svg>
-            </a>
-            <figure class="qr-card desktop-only">
-              <img id="qr" class="qr-img" src="data/bot_qr.png" alt="QR code that opens the Telegram bot" hidden>
-              <figcaption data-i18n="banner.qrCaption">Scan to open</figcaption>
-            </figure>
+    <!-- REPORT -->
+    <section class="report-section" id="report">
+      <div class="container">
+        <div class="split">
+          <div class="split-text">
+            <p class="eyebrow">ROUTE REPORTS</p>
+            <h2 class="section-title">Hours of footage in. One page out.</h2>
+            <p class="body-lg">Even one route produces hours of video and sensor readings. Reviewing that by hand is a bottleneck of its own — so the boat's footage is analysed automatically and condensed into a short report.</p>
+            <ul class="check-list">
+              <li>Detected issues, by type</li>
+              <li>Exact locations on the map</li>
+              <li>Severity levels</li>
+              <li>Plain-language observations</li>
+            </ul>
           </div>
+          <figure class="split-media media-card media-tall">
+            <img src="img/run-report.png" alt="An automatically generated route report: route map with a frame preview and a problem-type breakdown" width="798" height="852" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- GROUNDED IN SCIENCE -->
+    <section class="lessons" id="lessons">
+      <div class="container">
+        <header class="section-head section-head-center">
+          <p class="eyebrow">GROUNDED IN SCIENCE</p>
+          <h2 class="section-title">Judgement you can explain.</h2>
+          <p class="section-sub">Severity isn't a vibe. Every assessment is anchored in established environmental frameworks.</p>
+        </header>
+        <ul class="pill-list pill-list-center standards">
+          <li>WHO 2021 Recreational Water Quality</li>
+          <li>Bonn Agreement Oil Appearance Code</li>
+          <li>OSPAR macro-litter monitoring</li>
+          <li>Wet milieubeheer Art. 10.2</li>
+          <li>EU Bathing Water Directive 2006/7/EC</li>
+        </ul>
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>Objective criteria</h3>
+            <p>Raw vision models give subjective scores. Grounding them in real standards makes reports consistent and comparable.</p>
+          </article>
+          <article class="info-card">
+            <h3>Context, not just objects</h3>
+            <p>A bicycle on the quay is Amsterdam. A bicycle in the canal is pollution. The model reads the scene — and isn't limited to a fixed list of classes.</p>
+          </article>
+          <article class="info-card">
+            <h3>Plain language</h3>
+            <p>“A bulky human-made object, partially submerged” is now simply “a shopping cart”. Reports are written for people.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -225,16 +263,13 @@
       <div class="container">
         <div class="footer-row">
           <span class="footer-brand">waterwatch.ai</span>
-          <span class="footer-powered" data-i18n="footer.poweredBy">Powered by <strong>Gemma 4</strong></span>
           <a class="footer-contact" href="mailto:mail@waterwatch.ai">mail@waterwatch.ai</a>
-          <span class="footer-meta">Map © OpenStreetMap · CARTO  ·  <span id="footer-updated"></span></span>
+          <span class="footer-meta">Route map © OpenStreetMap contributors<span id="footer-updated"></span></span>
         </div>
       </div>
     </footer>
   </main>
 
-  <script src="vendor/maplibre-gl.js"></script>
-  <script src="i18n.js"></script>
-  <script src="map.js"></script>
+  <script src="site.js"></script>
 </body>
 </html>
